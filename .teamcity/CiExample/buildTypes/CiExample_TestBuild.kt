@@ -15,6 +15,7 @@ object CiExample_TestBuild : BuildType({
     steps {
         script {
             scriptContent = "echo 'hello'"
+            dockerImage = "bash"
         }
         gradle {
             tasks = "clean build"
