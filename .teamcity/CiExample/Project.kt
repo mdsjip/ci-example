@@ -1,6 +1,6 @@
 package CiExample
 
-import CiExample.buildTypes.CiExample_TestBuild
+import CiExample.buildTypes.CiExample_TestBuildWithJvmMemory
 import CiExample.vcsRoots.GithubProject
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
@@ -13,7 +13,9 @@ object Project : Project({
     name = "ci-example"
 
     vcsRoot(GithubProject)
-    buildType(CiExample_TestBuild)
+    generateSequence(16) { it * 2 }.take(5).forEach {
+        buildType(CiExample_TestBuildWithJvmMemory(it))
+    }
     features {
         versionedSettings {
             mode = VersionedSettings.Mode.ENABLED
