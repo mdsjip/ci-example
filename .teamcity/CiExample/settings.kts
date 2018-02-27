@@ -1,7 +1,6 @@
 package CiExample
 
-import jetbrains.buildServer.configs.kotlin.v2017_2.project
-import jetbrains.buildServer.configs.kotlin.v2017_2.version
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
 
 /*
 The settings script is an entry point for defining a single

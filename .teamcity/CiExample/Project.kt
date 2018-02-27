@@ -1,7 +1,9 @@
 package CiExample
 
-import CiExample.buildTypes.CiExample_TestBuild
+import CiExample.buildTypes.*
+import CiExample.vcsRoots.*
 import CiExample.vcsRoots.GithubProject
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
@@ -13,9 +15,12 @@ object Project : Project({
     name = "ci-example"
 
     vcsRoot(GithubProject)
+
     buildType(CiExample_TestBuild)
+
     features {
         versionedSettings {
+            id = "PROJECT_EXT_1"
             mode = VersionedSettings.Mode.ENABLED
             buildSettingsMode = VersionedSettings.BuildSettingsMode.PREFER_SETTINGS_FROM_VCS
             rootExtId = GithubProject.id

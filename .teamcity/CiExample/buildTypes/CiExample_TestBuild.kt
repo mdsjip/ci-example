@@ -1,9 +1,7 @@
 package CiExample.buildTypes
 
-import CiExample.vcsRoots.GithubProject
-import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
 object CiExample_TestBuild : BuildType({
@@ -12,7 +10,8 @@ object CiExample_TestBuild : BuildType({
     name = "test build"
 
     vcs {
-        root(GithubProject)
+        root(CiExample.vcsRoots.GithubProject)
+
     }
 
     steps {
