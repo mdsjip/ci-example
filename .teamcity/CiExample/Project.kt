@@ -1,7 +1,9 @@
 package CiExample
 
-import CiExample.buildTypes.CiExample_TestBuildWithJvmMemory
+import CiExample.buildTypes.*
+import CiExample.vcsRoots.*
 import CiExample.vcsRoots.GithubProject
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.Project
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.VersionedSettings
 import jetbrains.buildServer.configs.kotlin.v2017_2.projectFeatures.versionedSettings
@@ -13,11 +15,16 @@ object Project : Project({
     name = "ci-example"
 
     vcsRoot(GithubProject)
-    generateSequence(16) { it * 2 }.take(5).forEach {
-        buildType(CiExample_TestBuildWithJvmMemory(it))
-    }
+
+    buildType(CiExample_TestBuild_64)
+    buildType(CiExample_TestBuild_32)
+    buildType(CiExample_TestBuild_128)
+    buildType(CiExample_TestBuild_256)
+    buildType(CiExample_TestBuild_16)
+
     features {
         versionedSettings {
+            id = "PROJECT_EXT_1"
             mode = VersionedSettings.Mode.ENABLED
             buildSettingsMode = VersionedSettings.BuildSettingsMode.PREFER_SETTINGS_FROM_VCS
             rootExtId = GithubProject.id

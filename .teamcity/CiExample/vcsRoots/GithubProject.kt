@@ -1,5 +1,6 @@
 package CiExample.vcsRoots
 
+import jetbrains.buildServer.configs.kotlin.v2017_2.*
 import jetbrains.buildServer.configs.kotlin.v2017_2.vcs.GitVcsRoot
 
 object GithubProject : GitVcsRoot({
@@ -8,7 +9,7 @@ object GithubProject : GitVcsRoot({
     name = "github project"
     pollInterval = 10
     url = "https://github.com/mdsjip/ci-example"
-    agentCleanPolicy = AgentCleanPolicy.ALWAYS
+    agentCleanPolicy = GitVcsRoot.AgentCleanPolicy.ALWAYS
     authMethod = password {
         userName = "mdsjip"
         password = "credentialsJSON:63ec5b70-6898-464c-9dc4-57b26cb36a49"
