@@ -1,36 +1,31 @@
 package CiExample.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import CiExample.vcsRoots.GithubProject
+import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
-object CiExample_TestBuild_256 : BuildType({
-    uuid = "108e40f1-6bd8-44f2-adee-bd0cf76ea5ae-256"
-    id = "CiExample_TestBuild_256"
-    name = "test build with 256 Mb of JVM memory"
+object CiExample_TestBuild : BuildType({
+    uuid = "108e40f1-6bd8-44f2-adee-bd0cf76ea5ae"
+    id = "CiExample_TestBuild"
+    name = "test build"
 
     vcs {
-        root(CiExample.vcsRoots.GithubProject)
-
+        root(GithubProject)
     }
 
     steps {
-        script {
-            scriptContent = "echo 'test'"
-            dockerImage = "bash"
-        }
         gradle {
             tasks = "clean build"
             buildFile = "build.gradle.kts"
             useGradleWrapper = true
-            jvmArgs = "-Xmx256m"
         }
     }
 
     triggers {
         vcs {
-            branchFilter = "+:master"
+            branchFilter = "+:/refs/heads/master"
         }
     }
 })
