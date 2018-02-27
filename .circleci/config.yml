@@ -28,3 +28,5 @@ jobs:
 
       # run tests!
       - run: gradle test
+      # run build!
+      - run: gradle clean build
