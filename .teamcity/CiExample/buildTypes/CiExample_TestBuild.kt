@@ -1,6 +1,6 @@
 package CiExample.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2017_2.*
+import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
@@ -11,7 +11,6 @@ object CiExample_TestBuild : BuildType({
 
     vcs {
         root(CiExample.vcsRoots.GithubProject)
-
     }
 
     steps {
@@ -24,7 +23,6 @@ object CiExample_TestBuild : BuildType({
 
     triggers {
         vcs {
-            branchFilter = "+:/refs/heads/master"
         }
     }
 })

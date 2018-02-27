@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @EnableSwagger2
 @SpringBootApplication
 class Application {
-
     private val log = LoggerFactory.getLogger(Application::class.java)
 
     @Bean
