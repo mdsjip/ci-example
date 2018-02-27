@@ -1,7 +1,9 @@
 package CiExample.buildTypes
 
+import CiExample.vcsRoots.GithubProject
 import jetbrains.buildServer.configs.kotlin.v2017_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2017_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2017_2.triggers.vcs
 
 object CiExample_TestBuild : BuildType({
@@ -9,11 +11,11 @@ object CiExample_TestBuild : BuildType({
     id = "CiExample_TestBuild"
     name = "test build"
 
-    vcs {
-        root(CiExample.vcsRoots.GithubProject)
-    }
-
+    vcs { root(GithubProject) }
     steps {
+        script {
+            scriptContent = "echo 'hello'"
+        }
         gradle {
             tasks = "clean build"
             buildFile = "build.gradle.kts"
