@@ -9,4 +9,5 @@ data class Customer(
     val firstName: String,
     val lastName: String,
     @Id @GeneratedValue
-    val id: Long = -1)
+    val id: Long = -1
+)

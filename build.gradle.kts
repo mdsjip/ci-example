@@ -9,8 +9,8 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RC2")
-        classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.3")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE")
+        classpath("org.junit.platform:junit-platform-gradle-plugin:1.2.0-RC1")
     }
 }
 
@@ -21,17 +21,18 @@ apply {
 }
 
 plugins {
-    val kotlinVersion = "1.2.21"
+    val kotlinVersion = "1.2.41"
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
-    id("io.spring.dependency-management") version "1.0.4.RELEASE"
-    id("io.gitlab.arturbosch.detekt") version "1.0.0.RC6-3"
-    id("org.jmailen.kotlinter") version "1.7.0"
+    id("io.spring.dependency-management") version "1.0.5.RELEASE"
+    id("io.gitlab.arturbosch.detekt") version "1.0.0.RC6-4"
+    id("org.jmailen.kotlinter") version "1.11.2"
+    id("com.github.ben-manes.versions") version "0.17.0"
 }
 
 detekt {
-    version = "1.0.0.RC6-3"
+    version = "1.0.0.RC6-4"
     profile("main", Action {
         input = "$projectDir/src/main/kotlin"
         config = "$projectDir/detekt.yml"
@@ -47,6 +48,7 @@ kotlinter {
 }
 
 version = "1.0.0-SNAPSHOT"
+
 
 tasks {
     withType<KotlinCompile> {
@@ -74,7 +76,7 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
     }
-    testCompile("org.junit.jupiter:junit-jupiter-api")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine")
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.2.0-RC1")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0-RC1")
 }
 

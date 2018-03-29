@@ -48,7 +48,6 @@ object Project : Project({
     }
 })
 
-
 class Phase {
     val buildTypes = hashSetOf<BuildType>()
     operator fun BuildType.unaryPlus() {
@@ -76,4 +75,3 @@ class Pipeline {
         phases.add(newPhase)
     }
 }
-
